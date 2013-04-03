@@ -1,7 +1,7 @@
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
 Version:	0.8.1
-Release:	0.1
+Release:	0.2
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	http://rubygems.org/gems/%{name}-%{version}.gem
@@ -45,6 +45,9 @@ install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{_bindir}}
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
 
+install -d $RPM_BUILD_ROOT%{_datadir}/ruby/templates
+cp -a templates/* $RPM_BUILD_ROOT%{_datadir}/ruby/templates
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -54,6 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gem2rpm
 %{ruby_rubylibdir}/gem2rpm.rb
 %{ruby_rubylibdir}/gem2rpm
+%{_datadir}/ruby/templates
 
 %if 0
 %files doc

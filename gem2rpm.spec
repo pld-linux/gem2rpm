@@ -1,18 +1,18 @@
-%define		module	gem2rpm
 Summary:	Generate rpm specfiles from gems
-Name:		ruby-%{module}
+Name:		gem2rpm
 Version:	0.8.1
-Release:	1
+Release:	0.1
 License:	GPL v2+
 Group:		Development/Languages
-URL:		https://github.com/lutter/gem2rpm/
-Source0:	http://rubygems.org/gems/%{module}-%{version}.gem
+Source0:	http://rubygems.org/gems/%{name}-%{version}.gem
 # Source0-md5:	d3c9416f225ae944fd195e69e122d46e
 # git clone https://github.com/lutter/gem2rpm.git && cd gem2rpm && git checkout v0.8.1
 # tar czvf gem2rpm-0.8.1-tests.tgz test/
-Source1:	%{module}-%{version}-tests.tgz
+Source1:	%{name}-%{version}-tests.tgz
 # Source1-md5:	d7d8bc231dc405bbce00f570c89f530e
-BuildRequires:	ruby
+URL:		https://github.com/lutter/gem2rpm/
+BuildRequires:	rpm-rubyprov
+BuildRequires:	rpmbuild(macros) >= 1.656
 Requires:	ruby
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -31,9 +31,7 @@ Requires:	%{name} = %{version}-%{release}
 Documentation for %{name}.
 
 %prep
-%setup -qc
-%{__tar} xf %{SOURCE0} -O data.tar.gz | %{__tar} xz
-find -newer README  -o -print | xargs touch --reference %{SOURCE0}
+%setup -q
 
 %build
 %if %{with tests}

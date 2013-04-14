@@ -1,0 +1,9 @@
+--- gem2rpm-0.8.1/lib/gem2rpm.rb~	2013-04-14 16:00:00.000000000 +0300
++++ gem2rpm-0.8.1/lib/gem2rpm.rb	2013-04-14 16:00:28.916832649 +0300
+@@ -1,5 +1,6 @@
+ require 'erb'
+ require 'socket'
++require 'rubygems'
+ require 'rubygems/format'
+ require 'gem2rpm/distro'
+ require 'gem2rpm/specification'

@@ -1,7 +1,7 @@
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
 Version:	0.8.1
-Release:	0.2
+Release:	0.3
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	http://rubygems.org/gems/%{name}-%{version}.gem
@@ -10,6 +10,7 @@ Source0:	http://rubygems.org/gems/%{name}-%{version}.gem
 # tar czvf gem2rpm-0.8.1-tests.tgz test/
 Source1:	%{name}-%{version}-tests.tgz
 # Source1-md5:	d7d8bc231dc405bbce00f570c89f530e
+Patch0:		gems.patch
 URL:		https://github.com/lutter/gem2rpm/
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
@@ -32,6 +33,7 @@ Documentation for %{name}.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %if %{with tests}

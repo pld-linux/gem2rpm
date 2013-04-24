@@ -10,6 +10,9 @@ Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
 URL:		<%= spec.homepage %>
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
+<% if ! spec.executables.empty? -%>
+BuildRequires:	sed >= 4.0
+<% end -%>
 <% for d in spec.dependencies -%>
 <% for req in d.requirement -%>
 Requires:	ruby-<%= d.name %> <%= req %>
@@ -23,6 +26,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %prep
 %setup -q -n %{pkgname}-%{version}
+<% if ! spec.executables.empty? -%>
+%{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
+<% end -%>
 
 %install
 rm -rf $RPM_BUILD_ROOT

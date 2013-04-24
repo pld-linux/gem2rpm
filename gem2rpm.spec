@@ -1,7 +1,7 @@
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
 Version:	0.8.1
-Release:	0.5
+Release:	0.7
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	http://rubygems.org/gems/%{name}-%{version}.gem
@@ -38,6 +38,8 @@ Documentation for %{name}.
 %patch0 -p1
 %patch1 -p1
 cp -p %{SOURCE2} templates
+
+%{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 
 %build
 %if %{with tests}

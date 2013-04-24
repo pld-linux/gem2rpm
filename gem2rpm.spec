@@ -1,7 +1,7 @@
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
 Version:	0.8.1
-Release:	0.4
+Release:	0.5
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	http://rubygems.org/gems/%{name}-%{version}.gem

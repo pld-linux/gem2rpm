@@ -1,69 +1,44 @@
-# Generated from <%= format.gem_path %> by gem2rpm -*- rpm-spec -*-
-%define rbname <%= spec.name %>
-%define version <%= spec.version %>
-%define release 1
-
-Summary: <%= spec.summary %>
-Name: ruby-gems-%{rbname}
-
-Version: %{version}
-Release: %{release}
-Group: Development/Ruby
-License: Distributable
-URL: <%= spec.homepage %>
-Source0: %{rbname}-%{version}.gem
-# Make sure the spec template is included in the SRPM
-Source1: ruby-gems-%{rbname}.spec.in
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
-Requires: ruby <%= spec.required_ruby_version %>
-Requires: ruby-gems >= <%= Gem::RubyGemsVersion %>
+%define	pkgname	<%= spec.name %>
+Summary:	<%= spec.summary %>
+Name:		ruby-%{pkgname}
+Version:	<%= spec.version %>
+Release:	0.1
+License:	Distributable
+Group:		Development/Languages
+Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
+# Source0-md5:	-
+URL:		<%= spec.homepage %>
+BuildRequires:	rpm-rubyprov
+BuildRequires:	rpmbuild(macros) >= 1.656
 <% for d in spec.dependencies -%>
 <% for req in d.requirement -%>
-Requires: ruby-gems-<%= d.name %> <%= req %>
+Requires:	ruby-<%= d.name %> <%= req %>
 <% end -%>
 <% end -%>
-BuildRequires: ruby <%= spec.required_ruby_version %>
-BuildRequires: ruby-gems >= <%= Gem::RubyGemsVersion %>
-BuildArch: noarch
-Provides: ruby(<%= spec.name.capitalize %>) = %{version}
-
-%define gemdir <%= Gem.dir %>
-%define gembuilddir %{buildroot}%{gemdir}
+BuildArch:	noarch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 <%= spec.description %>
 
 %prep
-%setup -T -c
-
-%build
+%setup -q -n %{pkgname}-%{version}
 
 %install
-%{__rm} -rf %{buildroot}
-mkdir -p %{gembuilddir}
-gem install --local --install-dir %{gembuilddir} --force %{SOURCE0}
+rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{_bindir}}
+cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 <% if ! spec.executables.empty? -%>
-mkdir -p %{buildroot}/%{_bindir}
-mv %{gembuilddir}/bin/* %{buildroot}/%{_bindir}
-rmdir %{gembuilddir}/bin
+cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
 <% end -%>
 
 %clean
-%{__rm} -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-, root, root)
+%defattr(644,root,root,755)
 <% for f in spec.executables -%>
-%{_bindir}/<%= f %>
+%attr(755,root,root) %{_bindir}/<%= f %>
 <% end -%>
-<% format.file_entries.each do |entry, data| -%>
-<%   path = entry['path'] -%>
-<%   doc_prefix = spec.extra_rdoc_files.include?(path) ? "%doc " : "" -%>
-<%= doc_prefix %>%{gemdir}/gems/<%= spec.name %>-<%= spec.version %>/<%= path %>
-<% end %>
-
-%doc %{gemdir}/doc/<%= spec.name %>-<%= spec.version %>
-%{gemdir}/cache/<%= format.gem_path %>
-%{gemdir}/specifications/<%= format.gem_path %>spec
-
-%changelog
+%{ruby_vendorlibdir}/%{pkgname}.rb
+%{ruby_vendorlibdir}/%{pkgname}

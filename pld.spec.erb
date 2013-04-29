@@ -16,6 +16,9 @@ BuildRequires:	ruby-devel
 <% if ! spec.executables.empty? -%>
 BuildRequires:	sed >= 4.0
 <% end -%>
+<% if ! spec.required_rubygems_version.empty? and ! spec.required_rubygems_version.first.empty? -%>
+Requires:	ruby-rubygems <%= spec.required_rubygems_version.first %>
+<% end -%>
 <% for d in spec.runtime_dependencies -%>
 <% for req in d.requirement -%>
 Requires:	ruby-<%= d.name %> <%= req %>

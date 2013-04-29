@@ -1,3 +1,9 @@
+<% if ! spec.development_dependencies.empty? -%>
+#
+# Conditional build:
+%bcond_without	tests		# build without tests
+
+<% end -%>
 %define	pkgname	<%= spec.name %>
 Summary:	<%= spec.summary %>
 Name:		ruby-%{pkgname}
@@ -23,6 +29,15 @@ Requires:	ruby-rubygems <%= spec.required_rubygems_version.first %>
 <% for req in d.requirement -%>
 Requires:	ruby-<%= d.name %> <%= req %>
 <% end -%>
+<% end -%>
+<% if ! spec.development_dependencies.empty? -%>
+%if %{with tests}
+<% for d in spec.development_dependencies -%>
+<% for req in d.requirement -%>
+Requires:	ruby-<%= d.name %> <%= req %>
+<% end -%>
+<% end -%>
+%endif
 <% end -%>
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

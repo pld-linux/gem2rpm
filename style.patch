@@ -1,0 +1,11 @@
+--- gem2rpm-0.8.1/lib/gem2rpm/helpers.rb~	2013-04-29 22:57:16.000000000 +0300
++++ gem2rpm-0.8.1/lib/gem2rpm/helpers.rb	2013-04-29 23:13:01.409116757 +0300
+@@ -12,7 +12,7 @@
+       requirements.inject([]) do |output, r|
+         if r.first == '~>'
+ 	  next_version = Gem::Version.create(r.last).bump
+-	  output << ['=>', r.last]
++	  output << ['>=', r.last]
+ 	  output << ['<', next_version]
+ 	else
+ 	  output << r

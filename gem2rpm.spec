@@ -13,6 +13,7 @@ Source1:	%{name}-%{version}-tests.tgz
 Source2:	pld.spec.erb
 Patch0:		gems.patch
 Patch1:		pld.patch
+Patch2:		style.patch
 URL:		https://github.com/lutter/gem2rpm/
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
@@ -37,6 +38,7 @@ Documentation for %{name}.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 cp -p %{SOURCE2} templates
 
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*

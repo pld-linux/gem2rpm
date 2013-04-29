@@ -1,14 +1,14 @@
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
-Version:	0.8.1
-Release:	0.7
+Version:	0.9.2
+Release:	0.8
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	http://rubygems.org/gems/%{name}-%{version}.gem
-# Source0-md5:	d3c9416f225ae944fd195e69e122d46e
+# Source0-md5:	6988e28332369a79067d45b8c61f2851
 # git clone https://github.com/lutter/gem2rpm.git && cd gem2rpm && git checkout v0.8.1
 # tar czvf gem2rpm-0.8.1-tests.tgz test/
-Source1:	%{name}-%{version}-tests.tgz
+Source1:	%{name}-0.8.1-tests.tgz
 # Source1-md5:	d7d8bc231dc405bbce00f570c89f530e
 Source2:	pld.spec.erb
 Patch0:		gems.patch

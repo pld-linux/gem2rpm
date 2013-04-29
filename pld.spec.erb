@@ -25,14 +25,14 @@ BuildRequires:	sed >= 4.0
 <% if ! spec.required_rubygems_version.empty? and ! spec.required_rubygems_version.first.empty? -%>
 Requires:	ruby-rubygems <%= spec.required_rubygems_version.first %>
 <% end -%>
-<% for d in spec.runtime_dependencies -%>
+<% for d in spec.runtime_dependencies.sort -%>
 <% for req in d.requirement -%>
 Requires:	ruby-<%= d.name %> <%= req %>
 <% end -%>
 <% end -%>
 <% if ! spec.development_dependencies.empty? -%>
 %if %{with tests}
-<% for d in spec.development_dependencies -%>
+<% for d in spec.development_dependencies.sort -%>
 <% for req in d.requirement -%>
 Requires:	ruby-<%= d.name %> <%= req %>
 <% end -%>

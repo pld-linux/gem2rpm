@@ -46,7 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-<% for f in spec.executables -%>
+<% for f in spec.executables.sort -%>
 %attr(755,root,root) %{_bindir}/<%= f %>
 <% end -%>
 %{ruby_vendorlibdir}/%{pkgname}.rb

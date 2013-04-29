@@ -39,7 +39,9 @@ Requires:	ruby-<%= d.name %> <%= req %>
 <% end -%>
 %endif
 <% end -%>
+<% if spec.extensions.empty? -%>
 BuildArch:	noarch
+<% end -%>
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

@@ -55,7 +55,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %install
 rm -rf $RPM_BUILD_ROOT
+<% if spec.executables.empty? -%>
+install -d $RPM_BUILD_ROOT%{ruby_vendorlibdir}
+<% else -%>
 install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{_bindir}}
+<% end -%>
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 <% if ! spec.executables.empty? -%>
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}

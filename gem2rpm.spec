@@ -5,7 +5,7 @@
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
 Version:	0.9.2
-Release:	0.10
+Release:	1
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	https://github.com/lutter/gem2rpm/archive/v%{version}.tar.gz

@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	tests		# build without tests
+%bcond_with	tests		# tests require networking
 
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm

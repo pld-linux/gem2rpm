@@ -5,7 +5,7 @@
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
 Version:	0.9.2
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	https://github.com/lutter/gem2rpm/archive/v%{version}.tar.gz
@@ -22,6 +22,7 @@ BuildRequires:	rpmbuild(macros) >= 1.656
 BuildRequires:	glibc-localedb-all
 %endif
 %endif
+Requires:	ruby-rubygems
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

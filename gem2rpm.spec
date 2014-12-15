@@ -8,13 +8,13 @@ Version:	0.10.1
 Release:	1
 License:	GPL v2+
 Group:		Development/Languages
-Source0:	https://github.com/lutter/gem2rpm/archive/v%{version}/%{name}-%{version}.tar.gz
+Source0:	https://github.com/fedora-ruby/gem2rpm/archive/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	a22be828b4aeff0387a735daae969c5c
 Source2:	pld.spec.erb
 Patch0:		gems.patch
 Patch1:		pld.patch
 Patch2:		style.patch
-URL:		https://github.com/lutter/gem2rpm/
+URL:		https://github.com/fedora-ruby/gem2rpm
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
 %if %{with tests}

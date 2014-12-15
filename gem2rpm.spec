@@ -4,12 +4,12 @@
 
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
-Version:	0.9.2
-Release:	3
+Version:	0.10.1
+Release:	1
 License:	GPL v2+
 Group:		Development/Languages
-Source0:	https://github.com/lutter/gem2rpm/archive/v%{version}.tar.gz
-# Source0-md5:	133c4cae2e26c24a5db0453e2cbe2a72
+Source0:	https://github.com/lutter/gem2rpm/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	a22be828b4aeff0387a735daae969c5c
 Source2:	pld.spec.erb
 Patch0:		gems.patch
 Patch1:		pld.patch
@@ -41,12 +41,14 @@ Documentation for %{name}.
 
 %prep
 %setup -q
+%{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 cp -p %{SOURCE2} templates
 
-%{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
+# cleanup backups after patching
+find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 
 %build
 %if %{with tests}

@@ -5,7 +5,7 @@
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
 Version:	0.10.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	https://github.com/fedora-ruby/gem2rpm/archive/v%{version}/%{name}-%{version}.tar.gz
@@ -59,10 +59,10 @@ testrb -Itest test/
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_rubylibdir},%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{_bindir}}
 
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
-cp -a lib/* $RPM_BUILD_ROOT%{ruby_rubylibdir}
+cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 
 install -d $RPM_BUILD_ROOT%{_datadir}/ruby/templates
 cp -a templates/* $RPM_BUILD_ROOT%{_datadir}/ruby/templates
@@ -74,6 +74,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README AUTHORS
 %attr(755,root,root) %{_bindir}/gem2rpm
-%{ruby_rubylibdir}/gem2rpm.rb
-%{ruby_rubylibdir}/gem2rpm
+%{ruby_vendorlibdir}/gem2rpm.rb
+%{ruby_vendorlibdir}/gem2rpm
 %{_datadir}/ruby/templates

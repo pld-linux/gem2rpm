@@ -4,15 +4,14 @@
 
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
-Version:	0.10.1
-Release:	2
+Version:	0.11.1
+Release:	1
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	https://github.com/fedora-ruby/gem2rpm/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	a22be828b4aeff0387a735daae969c5c
+# Source0-md5:	b1b60ade93fd61c22c17cfe4b95c3609
 Source2:	pld.spec.erb
 Patch0:		gems.patch
-Patch1:		pld.patch
 Patch2:		style.patch
 URL:		https://github.com/fedora-ruby/gem2rpm
 BuildRequires:	rpm-rubyprov
@@ -43,7 +42,6 @@ Documentation for %{name}.
 %setup -q
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 cp -p %{SOURCE2} templates
 
@@ -72,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README AUTHORS
+%doc README.md AUTHORS
 %attr(755,root,root) %{_bindir}/gem2rpm
 %{ruby_vendorlibdir}/gem2rpm.rb
 %{ruby_vendorlibdir}/gem2rpm

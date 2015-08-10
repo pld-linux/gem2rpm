@@ -57,6 +57,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # write .gemspec
 %__gem_helper spec
 
+<% if !spec.extensions.empty? -%>
+cd ext/%{pkgname}
+%{__ruby} extconf.rb
+%{__make} \
+	CC="%{__cc}" \
+	LDFLAGS="%{rpmldflags}" \
+	CFLAGS="%{rpmcflags} -fPIC"
+<% end -%>
+
 %install
 rm -rf $RPM_BUILD_ROOT
 <% if spec.executables.empty? -%>

@@ -1,0 +1,10 @@
+--- gem2rpm-0.11.1/lib/gem2rpm/distro.rb	2015-05-06 17:43:19.000000000 +0300
++++ gem2rpm-0.11.1/lib/gem2rpm/distro.rb	2015-08-25 11:07:03.137289555 +0300
+@@ -33,5 +35,5 @@
+           begin
+-            os_release.os = content[/^ID=(.*)$/, 1].to_sym
+-            os_release.version = content[/^VERSION_ID=(.*)$/, 1]
++            os_release.os = content[/^ID=['"]?(.*?)['"]?$/, 1].to_sym
++            os_release.version = content[/^VERSION_ID=['"]?(.*?)['"]?$/, 1]
+           rescue
+           end

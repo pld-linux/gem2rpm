@@ -12,6 +12,7 @@ Source0:	https://github.com/fedora-ruby/gem2rpm/archive/v%{version}/%{name}-%{ve
 # Source0-md5:	b1b60ade93fd61c22c17cfe4b95c3609
 Source2:	pld.spec.erb
 Patch0:		gems.patch
+Patch1:		os-release-quotes.patch
 Patch2:		style.patch
 URL:		https://github.com/fedora-ruby/gem2rpm
 BuildRequires:	rpm-rubyprov
@@ -21,6 +22,7 @@ BuildRequires:	rpmbuild(macros) >= 1.656
 BuildRequires:	glibc-localedb-all
 %endif
 %endif
+Requires:	pld-release
 Requires:	ruby-rubygems
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,6 +44,7 @@ Documentation for %{name}.
 %setup -q
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 %patch0 -p1
+%patch1 -p1
 %patch2 -p1
 cp -p %{SOURCE2} templates
 

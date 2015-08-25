@@ -4,12 +4,12 @@
 
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
-Version:	0.11.1
+Version:	0.11.2
 Release:	1
 License:	GPL v2+
 Group:		Development/Languages
 Source0:	https://github.com/fedora-ruby/gem2rpm/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	b1b60ade93fd61c22c17cfe4b95c3609
+# Source0-md5:	80d6170dcfe7d0a840e8bf7149096d3a
 Source2:	pld.spec.erb
 Patch0:		gems.patch
 Patch1:		os-release-quotes.patch

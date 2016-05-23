@@ -18,6 +18,7 @@ URL:		https://github.com/fedora-ruby/gem2rpm
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
 %if %{with tests}
+BuildRequires:	ruby-minitest
 BuildRequires:	ruby-rake
 %endif
 Requires:	pld-release

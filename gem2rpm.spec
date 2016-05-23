@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	tests		# tests require networking
+%bcond_with	tests		# tests require minitest >= 5.0
 
 Summary:	Generate rpm specfiles from gems
 Name:		gem2rpm
@@ -18,7 +18,7 @@ URL:		https://github.com/fedora-ruby/gem2rpm
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
 %if %{with tests}
-BuildRequires:	ruby-minitest
+BuildRequires:	ruby-minitest >= 5.0
 BuildRequires:	ruby-rake
 %endif
 Requires:	pld-release

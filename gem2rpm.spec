@@ -18,6 +18,7 @@ URL:		https://github.com/fedora-ruby/gem2rpm
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
 %if %{with tests}
+BuildRequires:	ruby-rake
 %if %(locale -a | grep -q '^en_US$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
@@ -55,7 +56,7 @@ find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 %if %{with tests}
 # tests need UTF-8 locale
 LC_ALL=en_US.UTF-8 \
-testrb -Itest test/
+rake test
 %endif
 
 %install

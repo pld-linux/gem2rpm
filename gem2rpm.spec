@@ -52,7 +52,7 @@ find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
 
 %build
 %if %{with tests}
-rake test
+rake TESTOPTS='-v' test
 %endif
 
 %install

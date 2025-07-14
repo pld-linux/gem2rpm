@@ -42,9 +42,9 @@ Documentation for %{name}.
 %prep
 %setup -q
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
 cp -p %{SOURCE2} templates
 
 # cleanup backups after patching
